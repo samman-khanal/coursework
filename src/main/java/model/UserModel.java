@@ -18,48 +18,44 @@ public class UserModel {
 
     }
 
-    public Date getCreated_date() {
-        return created_date;
-    }
-
-    public void setCreated_date(Date created_date) {
+    // Constructor for new user with default role
+    public UserModel(String fullName, String username, String email, String password, Date created_date) {
+        this.fullName = fullName;
+        this.username = username;
+        this.email = email;
+        this.password = password;
         this.created_date = created_date;
     }
 
-    // Constructor for new user with default role
-    public UserModel(String fullName, String username, String email, String password) {
-        this.fullName = fullName;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
-
     // Constructor with ID and default role
-    public UserModel(int id, String fullName, String username, String email, String password) {
+    public UserModel(int id, String fullName, String username, String email, String password, Date created_date) {
         this.id = id;
         this.fullName = fullName;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.created_date = created_date;
     }
 
     // Constructor for user with custom role
-    public UserModel(String fullName, String username, String email, String password, int role) {
+    public UserModel(String fullName, String username, String email, String password, int role, Date created_date) {
         this.fullName = fullName;
         this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.created_date = created_date;
     }
 
     // Fully Parameterized Constructor
-    public UserModel(int id, String fullName, String username, String email, String password, int role) {
+    public UserModel(int id, String fullName, String username, String email, String password, int role, Date created_date) {
         this.id = id;
         this.fullName = fullName;
         this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.created_date = created_date;
     }
 
     // Getter and Setter Methods
@@ -111,4 +107,11 @@ public class UserModel {
         this.role = role;
     }
 
+    public Date getCreated_date() {
+        return created_date;
+    }
+
+    public void setCreated_date(Date created_date) {
+        this.created_date = created_date;
+    }
 }
