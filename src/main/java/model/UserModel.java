@@ -1,5 +1,7 @@
 package model;
 
+import java.sql.Date;
+
 public class UserModel {
 
     // Defining Variables
@@ -9,10 +11,19 @@ public class UserModel {
     private String email;
     private String password;
     private int role = 1; // For default users (students)
+    private Date created_date;
 
     // Default Constructor
     public UserModel() {
 
+    }
+
+    public Date getCreated_date() {
+        return created_date;
+    }
+
+    public void setCreated_date(Date created_date) {
+        this.created_date = created_date;
     }
 
     // Constructor for new user with default role

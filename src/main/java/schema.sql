@@ -31,3 +31,5 @@ CREATE TABLE REGISTRATION (
     FOREIGN KEY (event_id) REFERENCES EVENTS(event_id),
     UNIQUE (user_id, event_id)
 );
+
+CREATE TABLE
