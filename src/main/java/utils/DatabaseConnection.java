@@ -19,7 +19,7 @@ public class DatabaseConnection {
             prop.load(is);
             Class.forName(prop.getProperty("db.driver"));
             URL = prop.getProperty("db.url");
-            USER = prop.getProperty("db.user");
+            USER = prop.getProperty("db.username");
             PASSWORD = prop.getProperty("db.password");
         }
         catch (Exception e) {

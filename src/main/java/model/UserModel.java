@@ -5,12 +5,14 @@ import java.sql.Date;
 public class UserModel {
 
     // Defining Variables
+    public enum Role {admin, student}
     private int id;
     private String fullName;
     private String username;
     private String email;
     private String password;
-    private int role = 1; // For default users (students)
+    private Role role;
+    private byte[] profilePicture;
     private Date created_date;
 
     // Default Constructor
@@ -18,44 +20,34 @@ public class UserModel {
 
     }
 
-    // Constructor for new user with default role
-    public UserModel(String fullName, String username, String email, String password, Date created_date) {
-        this.fullName = fullName;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.created_date = created_date;
-    }
-
-    // Constructor with ID and default role
-    public UserModel(int id, String fullName, String username, String email, String password, Date created_date) {
-        this.id = id;
-        this.fullName = fullName;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.created_date = created_date;
-    }
-
-    // Constructor for user with custom role
-    public UserModel(String fullName, String username, String email, String password, int role, Date created_date) {
-        this.fullName = fullName;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-        this.created_date = created_date;
-    }
-
     // Fully Parameterized Constructor
-    public UserModel(int id, String fullName, String username, String email, String password, int role, Date created_date) {
+    public UserModel(int id, String fullName, String username, String email, String password, Role role, byte[] profilePicture, Date created_date) {
         this.id = id;
         this.fullName = fullName;
         this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.profilePicture = profilePicture;
         this.created_date = created_date;
+    }
+
+    // Constructor without ID for new users.
+    public UserModel(String fullName, String username, String email, String password, Role role, byte[] profilePicture, Date created_date) {
+        this.fullName = fullName;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.profilePicture = profilePicture;
+        this.created_date = created_date;
+    }
+
+    public UserModel(String fullName, String username, String email, String password) {
+        this.fullName = fullName;
+        this.username = username;
+        this.email = email;
+        this.password = password;
     }
 
     // Getter and Setter Methods
@@ -99,12 +91,20 @@ public class UserModel {
         this.password = password;
     }
 
-    public int getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(Role role) {
         this.role = role;
+    }
+
+    public byte[] getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(byte[] profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
     public Date getCreated_date() {
@@ -113,5 +113,13 @@ public class UserModel {
 
     public void setCreated_date(Date created_date) {
         this.created_date = created_date;
+    }
+
+    public boolean isAdmin() {
+        return role == Role.admin;
+    }
+
+    public boolean isStudent() {
+        return role == Role.student;
     }
 }
