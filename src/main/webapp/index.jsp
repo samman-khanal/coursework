@@ -20,7 +20,7 @@
         <nav>
             <ul>
                 <li><a href="<%= request.getContextPath()%>">Home</a></li>
-                <li><a href="<%= request.getContextPath()%>">About</a></li>
+                <li><a href="<%= request.getContextPath()%>/common/about.jsp">About</a></li>
                 <li><a href="#<%= request.getContextPath()%>">Courses</a></li>
                 <li><a href="<%= request.getContextPath()%>/view/login.jsp" class="login-btn">Login</a></li>
             </ul>
@@ -32,8 +32,8 @@
 <section class="hero">
     <div class="hero-content">
         <h1>Welcome to Evergreen College</h1>
-        <p>A transformative educational experience for students centered around innovation, diversity, collaboration, and academic excellence.</p>
-        <a href="<%= request.getContextPath()%>/view/register.jsp" class="cta-button">Register Now</a>
+        <p>A transformative educational experience for students centered around innovation, diversity, collaboration and academic excellence.</p>
+        <a href="<%= request.getContextPath()%>../view/register.jsp" class="cta-button">Register Now</a>
     </div>
 </section>
 <!-- Vision & Mission Section -->
@@ -70,7 +70,7 @@
                 <div class="event-details">
                     <span class="event-date"><i class="far fa-calendar"></i> March 15, 2025</span>
                     <h3>TechFest 2025</h3>
-                    <p>Annual technology exhibition featuring student projects, industry experts, and innovative solutions.</p>
+                    <p>Annual technology exhibition featuring student projects, industry experts and innovative solutions.</p>
                     <a href="<%= request.getContextPath()%>/index.jsp" class="learn-more">Learn More</a>
                 </div>
             </div>
@@ -90,7 +90,7 @@
                 <div class="event-details">
                     <span class="event-date"><i class="far fa-calendar"></i> May 5, 2025</span>
                     <h3>Sports Meet</h3>
-                    <p>Annual athletics competition featuring track events, team sports, and individual competitions.</p>
+                    <p>Annual athletics competition featuring track events, team sports and individual competitions.</p>
                     <a href="<%= request.getContextPath()%>/index.jsp" class="learn-more">Learn More</a>
                 </div>
             </div>
@@ -120,7 +120,7 @@
         <div class="footer-col">
             <h4>Quick Links</h4>
             <ul>
-                <li><a href="<%= request.getContextPath()%>">About</a></li>
+                <li><a href="<%= request.getContextPath()%>/common/about.jsp">About</a></li>
                 <li><a href="<%= request.getContextPath()%>">Courses</a></li>
                 <li><a href="<%= request.getContextPath()%>">Campus</a></li>
                 <li><a href="<%= request.getContextPath()%>">Contact</a></li>

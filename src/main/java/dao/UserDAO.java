@@ -14,17 +14,24 @@ public class UserDAO {
 
     // Method for creating a user
     public static int createUser(UserModel userModel) {
-        String query = "INSERT INTO USERS (fullName, username, email, password, role, created_date) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO USERS (fullName, username, email, password, role, profilePicture) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, userModel.getFullName());
             ps.setString(2, userModel.getUsername());
             ps.setString(3, userModel.getEmail());
             ps.setString(4, userModel.getPassword());
-//            ps.setRole(5, userModel.getRole());
-            ps.setDate(6, userModel.getCreated_date());
+            ps.setString(5, userModel.getRole().toString());
+
+            if (userModel.getProfilePicture() != null) {
+                ps.setBytes(6, userModel.getProfilePicture());
+            }
+            else {
+                ps.setNull(6, java.sql.Types.BLOB);
+            }
 
             int rowsAffected = ps.executeUpdate();
+
             if (rowsAffected > 0) {
                 ResultSet rs = ps.getGeneratedKeys();
                 if (rs.next()) {
@@ -55,9 +62,6 @@ public class UserDAO {
                     user.setUsername(rs.getString("username"));
                     user.setEmail(rs.getString("email"));
                     user.setPassword(hashedPwd);
-//                    user.setRole(UserModel.Role.valueOf(rs.getString("role")));
-//                    user.setProfilePicture(rs.getBytes("profilePicture"));
-                    user.setCreated_date(rs.getDate("created_date"));
 
                     // handling BLOB profile picture if needed.
                     byte[] profilePicture = user.getProfilePicture();

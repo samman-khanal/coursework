@@ -13,7 +13,6 @@ public class UserModel {
     private String password;
     private Role role;
     private byte[] profilePicture;
-    private Date created_date;
 
     // Default Constructor
     public UserModel() {
@@ -21,7 +20,7 @@ public class UserModel {
     }
 
     // Fully Parameterized Constructor
-    public UserModel(int id, String fullName, String username, String email, String password, Role role, byte[] profilePicture, Date created_date) {
+    public UserModel(int id, String fullName, String username, String email, String password, Role role, byte[] profilePicture) {
         this.id = id;
         this.fullName = fullName;
         this.username = username;
@@ -29,18 +28,16 @@ public class UserModel {
         this.password = password;
         this.role = role;
         this.profilePicture = profilePicture;
-        this.created_date = created_date;
     }
 
     // Constructor without ID for new users.
-    public UserModel(String fullName, String username, String email, String password, Role role, byte[] profilePicture, Date created_date) {
+    public UserModel(String fullName, String username, String email, String password, Role role, byte[] profilePicture) {
         this.fullName = fullName;
         this.username = username;
         this.email = email;
         this.password = password;
         this.role = role;
         this.profilePicture = profilePicture;
-        this.created_date = created_date;
     }
 
     public UserModel(String fullName, String username, String email, String password) {
@@ -105,14 +102,6 @@ public class UserModel {
 
     public void setProfilePicture(byte[] profilePicture) {
         this.profilePicture = profilePicture;
-    }
-
-    public Date getCreated_date() {
-        return created_date;
-    }
-
-    public void setCreated_date(Date created_date) {
-        this.created_date = created_date;
     }
 
     public boolean isAdmin() {

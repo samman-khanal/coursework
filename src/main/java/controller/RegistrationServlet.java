@@ -30,7 +30,7 @@ public class RegistrationServlet extends HttpServlet {
 
         if (!password.equals(confirmPassword)) {
             request.setAttribute("error", "Passwords do not match");
-            request.getRequestDispatcher("/register.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/register.jsp").forward(request, response);
             return;
         }
 
@@ -39,7 +39,7 @@ public class RegistrationServlet extends HttpServlet {
         try {
             int registerID = UserDAO.createUser(user);
             if (registerID > 0) {
-                response.sendRedirect("login.jsp");
+                response.sendRedirect("view/login.jsp");
             }
             else {
                 response.sendRedirect("register.jsp");

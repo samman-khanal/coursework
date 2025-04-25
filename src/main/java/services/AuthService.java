@@ -15,7 +15,7 @@ public class AuthService {
         // Hashing the password before storing
         String hashedPwd = PasswordHash.hashPassword(password);
 
-        UserModel newUser = new UserModel(0, fullName, username, email, hashedPwd, UserModel.Role.student, null, null);
+        UserModel newUser = new UserModel(0, fullName, username, email, hashedPwd, UserModel.Role.student, null);
 
         return UserDAO.createUser(newUser);
     }

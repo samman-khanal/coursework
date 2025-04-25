@@ -9,6 +9,7 @@ import dao.UserDAO;
 import model.UserModel;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
@@ -27,7 +28,12 @@ public class LoginServlet extends HttpServlet {
                     if (credentials != null && credentials.length == 2) {
                         String email = credentials[0];
                         String password = credentials[1];
-                        UserModel user = UserDAO.validateUser(email, password);
+                        UserModel user = null;
+                        try {
+                            user = UserDAO.validateUser(email, password);
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
                         if (user != null) {
                             // Auto login successful.
                             // Storing user in session.
@@ -50,7 +56,7 @@ public class LoginServlet extends HttpServlet {
             request.getSession().removeAttribute("registrationSuccess");
         }
         // Redirecting to the login.jsp page
-        request.getRequestDispatcher("/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/login.jsp").forward(request, response);
     }
 
     @Override
@@ -63,12 +69,17 @@ public class LoginServlet extends HttpServlet {
         // Validating input.
         if (email == null || email.trim().isEmpty() || password == null || password.trim().isEmpty()) {
             request.setAttribute("error", "Please enter your email and password");
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/login.jsp").forward(request, response);
             return;
         }
 
         // Authenticating user.
-        UserModel user = UserDAO.validateUser(email, password);
+        UserModel user = null;
+        try {
+            user = UserDAO.validateUser(email, password);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         if (user != null) {
             // Authentication successful.
@@ -87,12 +98,12 @@ public class LoginServlet extends HttpServlet {
             }
 
             // Redirecting to the homepage
-            response.sendRedirect(request.getContextPath() + "/");
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
         }
         else {
             // Authentication failed.
             request.setAttribute("error", "Invalid email or password");
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/login.jsp").forward(request, response);
         }
     }
 
