@@ -5,15 +5,26 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
+<<<<<<< HEAD
     <artifactId>Coursework</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>Coursework</name>
+=======
+    <artifactId>EventManagement</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>EventManagement</name>
+>>>>>>> cef35d0 (This commit is for final submission.)
     <packaging>war</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<<<<<<< HEAD
         <maven.compiler.target>23</maven.compiler.target>
         <maven.compiler.source>23</maven.compiler.source>
+=======
+        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>8</maven.compiler.source>
+>>>>>>> cef35d0 (This commit is for final submission.)
         <junit.version>5.11.0</junit.version>
     </properties>
 
@@ -37,7 +48,11 @@
             <scope>test</scope>
         </dependency>
 
+<<<<<<< HEAD
         <!--User defined dependency-->
+=======
+        <!--Installed dependencies-->
+>>>>>>> cef35d0 (This commit is for final submission.)
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

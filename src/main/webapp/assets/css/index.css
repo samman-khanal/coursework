@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /* Global Styles */
+=======
+@charset "UTF-8";
+>>>>>>> cef35d0 (This commit is for final submission.)
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 * {
@@ -228,6 +232,10 @@ nav ul li a:hover {
     font-size: 2.2rem;
     margin-bottom: 50px;
     position: relative;
+<<<<<<< HEAD
+=======
+    /* display: inline-flex; */
+>>>>>>> cef35d0 (This commit is for final submission.)
 }
 
 .featured-events h2:after {
@@ -401,6 +409,13 @@ footer {
     margin-bottom: 10px;
 }
 
+<<<<<<< HEAD
+=======
+/* .footer-col i {
+    margin-right: auto;
+} */
+
+>>>>>>> cef35d0 (This commit is for final submission.)
 .social-links {
     justify-content: center;
     align-items: center;
@@ -414,7 +429,11 @@ footer {
     height: 35px;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
+<<<<<<< HEAD
     /*display: flex;*/
+=======
+    display: flex;
+>>>>>>> cef35d0 (This commit is for final submission.)
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s;

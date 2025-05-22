@@ -1,6 +1,7 @@
 package dao;
 
 import model.UserModel;
+<<<<<<< HEAD
 import utils.DatabaseConnection;
 import utils.PasswordHash;
 
@@ -36,15 +37,75 @@ public class UserDAO {
                 ResultSet rs = ps.getGeneratedKeys();
                 if (rs.next()) {
                     return rs.getInt(1);
+=======
+import utils.DBConnectionUtil;
+import utils.PasswordHashUtil;
+
+import java.sql.*;
+
+public class UserDAO {
+
+    // Method to create user
+    public static int createUser(UserModel user) {
+        String query = "INSERT INTO users (fullName, username, email, password, role, phone, address, profilePicture) values (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = DBConnectionUtil.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+
+            ps.setString(1, user.getFullName());
+            ps.setString(2, user.getUsername());
+            ps.setString(3, user.getEmail());
+            ps.setString(4, user.getPassword());
+            ps.setString(5, user.getRole().toString());
+
+            // Handling phone if nullable
+            if (user.getPhone() != null) {
+                ps.setString(6, user.getPhone());
+            }
+            else {
+                ps.setNull(6, Types.VARCHAR);
+            }
+
+            // Handling address if nullable
+            if (user.getAddress() != null) {
+                ps.setString(7, user.getAddress());
+            }
+            else {
+                ps.setNull(7, Types.VARCHAR);
+            }
+
+            //Handling profilePicture if nullable
+            if (user.getProfilePicture() != null) {
+                ps.setBytes(8, user.getProfilePicture());
+            }
+            else {
+                ps.setNull(8, Types.BLOB);
+            }
+
+            // Execute the update
+            int affectedRows = ps.executeUpdate();
+
+            if (affectedRows > 0) {
+                try (ResultSet rs = ps.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        return rs.getInt(1);
+                    }
+>>>>>>> cef35d0 (This commit is for final submission.)
                 }
             }
         }
         catch (SQLException e) {
+<<<<<<< HEAD
             throw new RuntimeException(e);
+=======
+            System.out.println("Error creating user: " + e.getMessage());
+            System.err.println(e.getMessage());
+>>>>>>> cef35d0 (This commit is for final submission.)
         }
         return -1;
     }
 
+<<<<<<< HEAD
     public static UserModel validateUser(String email, String password) throws SQLException {
         String query = "SELECT * FROM USERS WHERE email = ? AND password = ?";
         try (Connection conn = DatabaseConnection.getConnection();
@@ -118,4 +179,53 @@ public class UserDAO {
         }
         return false;
     }
+=======
+    // Method to delete the user
+    public static boolean deleteUser(int id) {
+        String query = "DELETE FROM users WHERE id = ?";
+        try (Connection conn = DBConnectionUtil.getConnection();
+        PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, id);
+
+            // Executing the update
+            int affectedRows = ps.executeUpdate();
+            return affectedRows > 0;
+        }
+        catch (SQLException e) {
+            System.err.println("Error deleting user: " + e.getMessage());
+            return false;
+        }
+    }
+
+    // Method to authenticate the user.
+//    public static UserModel getUserByEmailAndUsername(String email, String username, String password) {
+//        String query = "SELECT * FROM users WHERE email = ? AND username = ? AND password = ?";
+//
+//        try (Connection conn = DBConnectionUtil.getConnection();
+//        PreparedStatement ps = conn.prepareStatement(query)) {
+//            ps.setString(1, email);
+//            ps.setString(2, username);
+//            ps.setString(3, password);
+//
+//            ResultSet rs = ps.executeQuery();
+//            if (rs.next()) {
+//                return new UserModel (
+//                        rs.getInt("id"),
+//                        rs.getString("fullName"),
+//                        rs.getString("username"),
+//                        rs.getString("email"),
+//                        rs.getString("password"),
+//                        rs.getString("role"),
+//                        rs.getString("phone"),
+//                        rs.getString("address"),
+//                        rs.getBytes("profilePicture")
+//                );
+//            }
+//        }
+//        catch (SQLException e) {
+//            System.err.println("Error getting user: " + e.getMessage());
+//        }
+//        return null;
+//    }
+>>>>>>> cef35d0 (This commit is for final submission.)
 }
